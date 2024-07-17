@@ -12,10 +12,7 @@ const ProtectedLayout = ({ children }: Props) => {
 			<div className='w-32 h-full'>
 				<SideBar />
 			</div>
-			<main className='w-full h-full'>
-				<TopBar />
-				{children}
-			</main>
+			<main className='w-full h-full'>{children}</main>
 		</div>
 	)
 }
