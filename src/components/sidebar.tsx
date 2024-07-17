@@ -14,7 +14,7 @@ const SideBar = () => {
 						width={60}
 						height={60}
 						alt='Icon'
-						className='self-center'
+						className='dark:bg-neutral-100 self-center p-2 rounded-md'
 					/>
 				</Link>
 			</div>
