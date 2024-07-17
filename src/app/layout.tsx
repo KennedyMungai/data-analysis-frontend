@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/providers/theme-provider'
 import type { Metadata } from 'next'
-import { Inter as FontSans } from 'next/font/google'
+import { Montserrat as FontSans } from 'next/font/google'
 import './globals.css'
 
 const fontSans = FontSans({ subsets: ['latin'], variable: '--font-sans' })
