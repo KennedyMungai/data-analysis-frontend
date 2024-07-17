@@ -24,7 +24,7 @@ const HomePage = () => {
 							Data Analysis
 						</p>
 					</div>
-					<Link href='/dashboard'>
+					<Link href='/regions'>
 						<Button
 							variant={'outline'}
 							size={'lg'}
