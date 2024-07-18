@@ -7,5 +7,5 @@ export const useFetchRegion = (regionId: string) =>
 		queryFn: async () =>
 			axios
 				.get(`http://localhost:8000/regions/${regionId}`)
-				.then((res) => res.data)
+				.then((res) => res.data as IRegion)
 	})
