@@ -1,42 +1,42 @@
-interface Region {
+interface IRegion {
 	region_name: string
 	region_id: string
 	created_at: string
 	updated_at: string
-	stores: Store[]
-	employees: Employee[]
-	incidents: Incident[]
+	stores: IStore[]
+	employees: IEmployee[]
+	incidents: IIncident[]
 }
 
-interface Store {
+interface IStore {
 	store_name: string
 	store_id: string
 	created_at: string
 	updated_at: string
-	employees: Employee[]
-	incidents: Incident[]
-	store_sections: StoreSection[]
+	employees: IEmployee[]
+	incidents: IIncident[]
+	store_sections: IStoreSection[]
 }
 
-interface StoreSection {
+interface IStoreSection {
 	store_section_name: string
 	store_section_id: string
 	created_at: string
 	updated_at: string
-	incidents: Incident[]
+	incidents: IIncident[]
 }
 
-interface Employee {
+interface IEmployee {
 	employee_name: string
 	employee_email: string
 	employee_phone_number: string
 	employee_id: string
 	created_at: string
 	updated_at: string
-	incidents: Incident[]
+	incidents: IIncident[]
 }
 
-interface Incident {
+interface IIncident {
 	incident_description: string
 	product_name: string
 	product_code: string
@@ -51,6 +51,6 @@ interface Incident {
 	updated_at: string
 }
 
-interface CreateRegion {
+interface ICreateRegion {
 	region_name: string
 }
