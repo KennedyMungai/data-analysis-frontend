@@ -43,7 +43,7 @@ const AddStoreCard = ({ regionId }: Props) => {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			store_name: '',
-			region_id: ''
+			region_id: regionId
 		}
 	})
 
@@ -99,9 +99,8 @@ const AddStoreCard = ({ regionId }: Props) => {
 											<FormControl>
 												<Input
 													placeholder='E.g. Kanyenya-ini, Kwa Njenga'
-													value={regionId}
 													disabled
-													// {...field}
+													{...field}
 												/>
 											</FormControl>
 											<FormDescription>
