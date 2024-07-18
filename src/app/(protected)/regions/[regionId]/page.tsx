@@ -17,7 +17,7 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 		return (
 			<div className='h-full'>
 				<TopBar title={regionId} />
-				{regionId}
+				Loading...
 			</div>
 		)
 	}
