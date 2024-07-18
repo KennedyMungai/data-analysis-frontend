@@ -54,3 +54,8 @@ interface IIncident {
 interface ICreateRegion {
 	region_name: string
 }
+
+interface ICreateStore {
+	store_name: string
+	region_id: string
+}
