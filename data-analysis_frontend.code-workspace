@@ -12,7 +12,8 @@
 			"Storesection",
 			"tailwindcss",
 			"tanstack",
-			"Turkana"
+			"Turkana",
+			"zustand"
 		]
 	}
 }
