@@ -50,3 +50,7 @@ interface Incident {
 	created_at: string
 	updated_at: string
 }
+
+interface CreateRegion {
+	region_name: string
+}
