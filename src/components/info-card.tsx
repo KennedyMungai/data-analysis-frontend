@@ -11,7 +11,7 @@ type Props = {
 const InfoCard = ({ children, link, title }: Props) => {
 	return (
 		<Link href={link}>
-			<Card className='w-32 h-48'>
+			<Card>
 				<CardHeader>{title}</CardHeader>
 				<CardContent>{children}</CardContent>
 			</Card>
