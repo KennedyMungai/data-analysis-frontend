@@ -59,3 +59,8 @@ interface ICreateStore {
 	store_name: string
 	region_id: string
 }
+
+interface ICreateStoreSection {
+	store_section_name: string
+	store_id: string
+}
