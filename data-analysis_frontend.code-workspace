@@ -5,6 +5,12 @@
 		}
 	],
 	"settings": {
-		"cSpell.words": ["lucide", "Storesection", "tailwindcss", "tanstack"]
+		"cSpell.words": [
+			"lucide",
+			"sonner",
+			"Storesection",
+			"tailwindcss",
+			"tanstack"
+		]
 	}
 }
