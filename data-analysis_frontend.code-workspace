@@ -6,11 +6,13 @@
 	],
 	"settings": {
 		"cSpell.words": [
+			"hookform",
 			"lucide",
 			"sonner",
 			"Storesection",
 			"tailwindcss",
-			"tanstack"
+			"tanstack",
+			"Turkana"
 		]
 	}
 }
