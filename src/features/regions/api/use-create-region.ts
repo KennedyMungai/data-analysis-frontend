@@ -2,16 +2,12 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { toast } from 'sonner'
 
-type Props = {
-	createRegionData: CreateRegion
-}
-
-export const useCreateRegion = ({ createRegionData }: Props) => {
+export const useCreateRegion = () => {
 	const queryClient = useQueryClient()
 
 	const mutation = useMutation({
 		mutationKey: ['create-region'],
-		mutationFn: async () =>
+		mutationFn: async (createRegionData: ICreateRegion) =>
 			axios
 				.post('http://localhost:8000/regions', createRegionData)
 				.then((res) => res.data),
