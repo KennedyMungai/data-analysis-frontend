@@ -3,6 +3,7 @@
 import InfoCard from '@/components/info-card'
 import TopBar from '@/components/top-bar'
 import { useFetchRegions } from '@/features/regions/api/use-fetch-regions'
+import AddRegionCard from '@/features/regions/components/add-region-card'
 
 const RegionsPage = () => {
 	const { data, isPending, isError } = useFetchRegions()
@@ -32,12 +33,12 @@ const RegionsPage = () => {
 		)
 	}
 
-	const regions: Region[] = data
+	const regions: IRegion[] = data
 
 	return (
 		<div className='h-full'>
 			<TopBar title={'Regions'} />
-			<div className='flex flex-wrap items-center justify-center h-full p-4'>
+			<div className='gap-x-4 gap-y-8 flex flex-wrap items-center justify-center h-full p-4'>
 				{regions.map((region) => (
 					<InfoCard
 						link={`/regions/${region.region_id}`}
@@ -48,6 +49,7 @@ const RegionsPage = () => {
 						{/* TODO: Add data specific to a region */}
 					</InfoCard>
 				))}
+				<AddRegionCard />
 			</div>
 		</div>
 	)
