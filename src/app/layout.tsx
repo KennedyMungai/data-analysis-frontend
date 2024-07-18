@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 import QueryProvider from '@/providers/query-provider'
 import { ThemeProvider } from '@/providers/theme-provider'
@@ -26,7 +27,10 @@ export default function RootLayout({
 				)}
 			>
 				<ThemeProvider>
-					<QueryProvider>{children}</QueryProvider>
+					<QueryProvider>
+						<Toaster />
+						{children}
+					</QueryProvider>
 				</ThemeProvider>
 			</body>
 		</html>
