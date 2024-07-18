@@ -11,9 +11,13 @@ type Props = {
 const InfoCard = ({ children, link, title }: Props) => {
 	return (
 		<Link href={link}>
-			<Card>
-				<CardHeader>{title}</CardHeader>
-				<CardContent>{children}</CardContent>
+			<Card className='shadow-md w-64 h-72'>
+				<CardHeader className='capitalize font-bold text-5xl text-center'>
+					{title}
+				</CardHeader>
+				<CardContent className='text-muted-foreground text-sm text-center'>
+					{children}
+				</CardContent>
 			</Card>
 		</Link>
 	)
