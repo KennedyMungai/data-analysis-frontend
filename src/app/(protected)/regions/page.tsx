@@ -32,7 +32,7 @@ const RegionsPage = () => {
 		)
 	}
 
-	const regions: Region[] = .data
+	const regions: Region[] = data
 
 	return (
 		<div className='h-full'>
