@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 
 type Props = {
-	children: ReactNode
+	children?: ReactNode
 	link: string
 	title: string
 }
