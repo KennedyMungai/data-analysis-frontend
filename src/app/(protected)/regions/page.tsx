@@ -2,6 +2,12 @@
 
 import InfoCard from '@/components/info-card'
 import TopBar from '@/components/top-bar'
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger
+} from '@/components/ui/accordion'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useFetchRegions } from '@/features/regions/api/use-fetch-regions'
 import AddRegionCard from '@/features/regions/components/add-region-card'
@@ -47,13 +53,40 @@ const RegionsPage = () => {
 							title={`${region.region_name}`}
 							key={region.region_id}
 						>
-							<ul>
-								{region.stores.map((store) => (
-									<li key={store.store_id}>
-										{store.store_name}
-									</li>
-								))}
-							</ul>
+							<Accordion type='single' collapsible>
+								<AccordionItem value='stores'>
+									<AccordionTrigger>Stores</AccordionTrigger>
+									<AccordionContent>
+										<ul className='text-start text-md'>
+											{region.stores?.map((store) => (
+												<li key={store.store_id}>
+													{store.store_name}
+												</li>
+											))}
+										</ul>
+									</AccordionContent>
+								</AccordionItem>
+								<AccordionItem value='employees'>
+									<AccordionTrigger>
+										Employees
+									</AccordionTrigger>
+									<AccordionContent>
+										<ul className='text-start text-md'>
+											{region.employees.map(
+												(employee) => (
+													<li
+														key={
+															employee.employee_id
+														}
+													>
+														{employee.employee_name}
+													</li>
+												)
+											)}
+										</ul>
+									</AccordionContent>
+								</AccordionItem>
+							</Accordion>
 
 							{/* TODO: Add data specific to a region */}
 						</InfoCard>
