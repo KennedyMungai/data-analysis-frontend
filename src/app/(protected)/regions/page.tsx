@@ -87,8 +87,6 @@ const RegionsPage = () => {
 									</AccordionContent>
 								</AccordionItem>
 							</Accordion>
-
-							{/* TODO: Add data specific to a region */}
 						</InfoCard>
 					))}
 					<AddRegionCard />

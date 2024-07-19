@@ -2,6 +2,12 @@
 
 import InfoCard from '@/components/info-card'
 import TopBar from '@/components/top-bar'
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger
+} from '@/components/ui/accordion'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useFetchRegion } from '@/features/regions/api/use-fetch-region'
 import { useFetchRegionStores } from '@/features/stores/api/use-fetch-region-stores'
@@ -17,12 +23,14 @@ const StoresPage = () => {
 
 	const regionStoresQuery = useFetchRegionStores(regionId)
 
-	if (regionQuery.isPending)
-		<div className='h-full'>
-			<TopBar title={''} />
-			Loading...
-		</div>
-		
+	if (regionQuery.isPending) {
+		return (
+			<div className='h-full'>
+				<TopBar title={''} />
+				Loading...
+			</div>
+		)
+	}
 
 	if (regionQuery.isError)
 		<div className='h-full'>
@@ -41,8 +49,50 @@ const StoresPage = () => {
 							title={store.store_name}
 							key={store.store_id}
 						>
-							Some Info
-							{/* TODO: Add data specific to a region */}
+							<Accordion type='single' collapsible>
+								<AccordionItem value='storeSections'>
+									<AccordionTrigger>
+										Store Sections
+									</AccordionTrigger>
+									<AccordionContent>
+										<ul className='text-start text-md'>
+											{store.store_sections?.map(
+												(storeSection) => (
+													<li
+														key={
+															storeSection.store_section_id
+														}
+													>
+														{
+															storeSection.store_section_name
+														}
+													</li>
+												)
+											)}
+										</ul>
+									</AccordionContent>
+								</AccordionItem>
+								<AccordionItem value='employees'>
+									<AccordionTrigger>
+										Employees
+									</AccordionTrigger>
+									<AccordionContent>
+										<ul className='text-start text-md'>
+											{store.employees?.map(
+												(employee) => (
+													<li
+														key={
+															employee.employee_id
+														}
+													>
+														{employee.employee_name}
+													</li>
+												)
+											)}
+										</ul>
+									</AccordionContent>
+								</AccordionItem>
+							</Accordion>
 						</InfoCard>
 					))}
 					<AddStoreCard regionId={regionId} />
