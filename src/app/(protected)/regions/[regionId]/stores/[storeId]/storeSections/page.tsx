@@ -41,10 +41,7 @@ const StoreSectionsPage = () => {
 							link={`/regions/${regionId}/stores/${storeId}/storeSections/${storeSection.store_section_id}`}
 							title={storeSection.store_section_name}
 							key={storeSection.store_section_id}
-						>
-							Some Info
-							{/* TODO: Add data specific to a region */}
-						</InfoCard>
+						/>
 					))}
 					<AddStoreSectionCard storeId={storeId} />
 				</div>
