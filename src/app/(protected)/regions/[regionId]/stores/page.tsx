@@ -19,9 +19,10 @@ const StoresPage = () => {
 
 	if (regionQuery.isPending)
 		<div className='h-full'>
-			<TopBar title={'Fetch Pending'} />
+			<TopBar title={''} />
 			Loading...
 		</div>
+		
 
 	if (regionQuery.isError)
 		<div className='h-full'>

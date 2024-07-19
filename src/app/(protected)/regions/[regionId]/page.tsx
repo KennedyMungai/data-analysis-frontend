@@ -18,7 +18,7 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 	if (isPending) {
 		return (
 			<div className='h-full'>
-				<TopBar title={regionId} />
+				<TopBar title={''} />
 				Loading...
 			</div>
 		)
