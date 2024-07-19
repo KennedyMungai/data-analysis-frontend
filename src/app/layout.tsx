@@ -1,6 +1,7 @@
 import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 import QueryProvider from '@/providers/query-provider'
+import SheetProvider from '@/providers/sheet-provider'
 import { ThemeProvider } from '@/providers/theme-provider'
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
@@ -28,6 +29,7 @@ export default function RootLayout({
 			>
 				<ThemeProvider>
 					<QueryProvider>
+						<SheetProvider />
 						<Toaster />
 						{children}
 					</QueryProvider>
