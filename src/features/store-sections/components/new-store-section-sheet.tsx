@@ -1,5 +1,3 @@
-'use client'
-
 import { Button } from '@/components/ui/button'
 import {
 	Form,
@@ -17,52 +15,39 @@ import {
 	SheetHeader,
 	SheetTitle
 } from '@/components/ui/sheet'
-import { useCreateStore } from '@/features/stores/api/use-create-store'
-import { useNewStore } from '@/features/stores/hooks/use-new-store'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { usePathname } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import { useMountedState } from 'react-use'
+import { useNewStoreSection } from '@/features/store-sections/hooks/use-new-store-section'
+import { useCreateStoreSection } from '@/features/store-sections/api/use-create-store-section'
 import { z } from 'zod'
 
 const formSchema = z.object({
-	store_name: z.string().min(1, 'Store Name is required'),
-	region_id: z.string().min(1, 'Region is required')
+	store_section_name: z.string().min(1, 'Store Section Name is required'),
+	store_id: z.string().min(1, 'Store is required')
 })
 
-const NewStoreSheet = () => {
-	const pathname = usePathname()
+const NewStoreSectionSheet = () => {
+	const { isOpen, onClose } = useNewStoreSection()
 
-	const isMounted = useMountedState()
+	const { isPending, mutate } = useCreateStoreSection()
 
-	const regionId = pathname.split('/')[2]
-
-	const { isOpen, onClose } = useNewStore()
-
-	const { isPending, mutate } = useCreateStore()
-
-	const form = useForm<ICreateStore>({
+	const form = useForm<ICreateStoreSection>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			store_name: '',
-			region_id: regionId
+			store_section_name: '',
+			store_id: ''
 		}
 	})
 
-	const handleSubmit = async (values: ICreateStore) => {
+	const handleSubmit = async (values: ICreateStoreSection) =>
 		mutate(values, { onSuccess: () => onClose() })
-
-		form.reset()
-	}
-
-	if (!isMounted) return null
 
 	return (
 		<Sheet open={isOpen} onOpenChange={onClose}>
 			<SheetContent>
 				<SheetHeader>
 					<SheetTitle className='text-2xl text-center capitalize'>
-						Create a New Store
+						Create a New Store Section
 					</SheetTitle>
 				</SheetHeader>
 				<div className='h-auto'>
@@ -70,11 +55,13 @@ const NewStoreSheet = () => {
 						<form onSubmit={form.handleSubmit(handleSubmit)}>
 							<FormField
 								control={form.control}
-								name='store_name'
+								name='store_section_name'
 								render={({ field }) => {
 									return (
 										<FormItem>
-											<FormLabel>Store Name</FormLabel>
+											<FormLabel>
+												Store Section Name
+											</FormLabel>
 											<FormControl>
 												<Input
 													placeholder='E.g. Kanyenya-ini, Kwa Njenga'
@@ -82,7 +69,7 @@ const NewStoreSheet = () => {
 												/>
 											</FormControl>
 											<FormDescription>
-												The name of a new store
+												The name of a new store section
 											</FormDescription>
 											<FormMessage />
 										</FormItem>
@@ -91,11 +78,11 @@ const NewStoreSheet = () => {
 							/>
 							<FormField
 								control={form.control}
-								name='region_id'
+								name='store_id'
 								render={({ field }) => {
 									return (
 										<FormItem>
-											<FormLabel>Region ID</FormLabel>
+											<FormLabel>Store ID</FormLabel>
 											<FormControl>
 												<Input
 													placeholder='E.g. Kanyenya-ini, Kwa Njenga'
@@ -122,4 +109,4 @@ const NewStoreSheet = () => {
 	)
 }
 
-export default NewStoreSheet
+export default NewStoreSectionSheet
