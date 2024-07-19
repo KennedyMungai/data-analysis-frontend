@@ -18,6 +18,7 @@ export const useCreateStoreSection = () => {
 			queryClient.invalidateQueries({
 				queryKey: ['stores_store_sections']
 			})
+			// TODO: Find a way to invalidate store sections
 			toast.success('Store Section created successfully')
 		},
 		onError: () => toast.error('Failed to create store section')

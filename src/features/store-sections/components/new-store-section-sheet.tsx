@@ -27,7 +27,7 @@ const formSchema = z.object({
 })
 
 const NewStoreSectionSheet = () => {
-	const { isOpen, onClose } = useNewStoreSection()
+	const { isOpen, onClose, storeId } = useNewStoreSection()
 
 	const { isPending, mutate } = useCreateStoreSection()
 
@@ -35,7 +35,7 @@ const NewStoreSectionSheet = () => {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			store_section_name: '',
-			store_id: ''
+			store_id: storeId
 		}
 	})
 
