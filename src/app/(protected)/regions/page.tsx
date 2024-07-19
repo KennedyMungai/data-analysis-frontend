@@ -2,6 +2,7 @@
 
 import InfoCard from '@/components/info-card'
 import TopBar from '@/components/top-bar'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { useFetchRegions } from '@/features/regions/api/use-fetch-regions'
 import AddRegionCard from '@/features/regions/components/add-region-card'
 
@@ -38,24 +39,28 @@ const RegionsPage = () => {
 	return (
 		<div className='h-full'>
 			<TopBar title={'Regions'} />
-			<div className='gap-x-4 gap-y-8 flex flex-wrap items-center justify-center h-full p-4'>
-				{regions.map((region) => (
-					<InfoCard
-						link={`/regions/${region.region_id}`}
-						title={`${region.region_name}`}
-						key={region.region_id}
-					>
-						<ul>
-							{region.stores.map((store) => (
-								<li key={store.store_id}>{store.store_name}</li>
-							))}
-						</ul>
+			<ScrollArea className='h-full w-full px-12 py-6'>
+				<div className='w-full h-full flex flex-wrap items-center justify-center gap-4'>
+					{regions.map((region) => (
+						<InfoCard
+							link={`/regions/${region.region_id}`}
+							title={`${region.region_name}`}
+							key={region.region_id}
+						>
+							<ul>
+								{region.stores.map((store) => (
+									<li key={store.store_id}>
+										{store.store_name}
+									</li>
+								))}
+							</ul>
 
-						{/* TODO: Add data specific to a region */}
-					</InfoCard>
-				))}
-				<AddRegionCard />
-			</div>
+							{/* TODO: Add data specific to a region */}
+						</InfoCard>
+					))}
+					<AddRegionCard />
+				</div>
+			</ScrollArea>
 		</div>
 	)
 }
