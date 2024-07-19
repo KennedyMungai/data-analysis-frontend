@@ -22,6 +22,7 @@ import { useNewStore } from '@/features/stores/hooks/use-new-store'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { usePathname } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { useMountedState } from 'react-use'
 import { z } from 'zod'
 
 const formSchema = z.object({
@@ -31,6 +32,8 @@ const formSchema = z.object({
 
 const NewStoreSheet = () => {
 	const pathname = usePathname()
+
+	const isMounted = useMountedState()
 
 	const regionId = pathname.split('/')[2]
 
@@ -51,6 +54,8 @@ const NewStoreSheet = () => {
 
 		form.reset()
 	}
+
+	if (!isMounted) return null
 
 	return (
 		<Sheet open={isOpen} onOpenChange={onClose}>
