@@ -21,13 +21,17 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+type Props = {
+	storeId: string
+}
+
 const formSchema = z.object({
 	store_section_name: z.string().min(1, 'Store Section Name is required'),
 	store_id: z.string().min(1, 'Store is required')
 })
 
-const NewStoreSectionSheet = () => {
-	const { isOpen, onClose, storeId } = useNewStoreSection()
+const NewStoreSectionSheet = ({ storeId }: Props) => {
+	const { isOpen, onClose } = useNewStoreSection()
 
 	const { isPending, mutate } = useCreateStoreSection()
 
