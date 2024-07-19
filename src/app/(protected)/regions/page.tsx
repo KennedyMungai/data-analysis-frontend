@@ -45,7 +45,12 @@ const RegionsPage = () => {
 						title={`${region.region_name}`}
 						key={region.region_id}
 					>
-						Some Info
+						<ul>
+							{region.stores.map((store) => (
+								<li key={store.store_id}>{store.store_name}</li>
+							))}
+						</ul>
+
 						{/* TODO: Add data specific to a region */}
 					</InfoCard>
 				))}
