@@ -1,5 +1,4 @@
 import SideBar from '@/components/sidebar'
-import TopBar from '@/components/top-bar'
 import { ReactNode } from 'react'
 
 type Props = {
