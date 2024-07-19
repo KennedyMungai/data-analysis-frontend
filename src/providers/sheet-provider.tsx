@@ -1,5 +1,6 @@
 'use client'
 
+import NewRegionSheet from '@/features/regions/components/new-region-sheet'
 import { useMountedState } from 'react-use'
 
 const SheetProvider = () => {
@@ -7,7 +8,11 @@ const SheetProvider = () => {
 
 	if (!isMounted) return null
 
-	return <></>
+	return (
+		<>
+			<NewRegionSheet />
+		</>
+	)
 }
 
 export default SheetProvider
