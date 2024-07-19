@@ -39,6 +39,8 @@ const NewRegionSheet = () => {
 
 	const handleSubmit = async (values: ICreateRegion) => {
 		mutate(values, { onSuccess: () => onClose() })
+
+        form.reset()
 	}
 
 	return (
