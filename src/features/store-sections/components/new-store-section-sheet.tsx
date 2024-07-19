@@ -15,10 +15,10 @@ import {
 	SheetHeader,
 	SheetTitle
 } from '@/components/ui/sheet'
+import { useCreateStoreSection } from '@/features/store-sections/api/use-create-store-section'
+import { useNewStoreSection } from '@/features/store-sections/hooks/use-new-store-section'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { useNewStoreSection } from '@/features/store-sections/hooks/use-new-store-section'
-import { useCreateStoreSection } from '@/features/store-sections/api/use-create-store-section'
 import { z } from 'zod'
 
 const formSchema = z.object({

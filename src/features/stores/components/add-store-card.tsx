@@ -3,13 +3,16 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { useNewStore } from '@/features/stores/hooks/use-new-store'
 import { Plus } from 'lucide-react'
+import { useEffectOnce } from 'react-use'
 
 type Props = {
 	regionId: string
 }
 
 const AddStoreCard = ({ regionId }: Props) => {
-	const { onOpen } = useNewStore()
+	const { onOpen, setRegionId } = useNewStore()
+
+	useEffectOnce(() => setRegionId(regionId))
 
 	return (
 		<Card className='h-72 w-64 shadow-md' onClick={onOpen}>
