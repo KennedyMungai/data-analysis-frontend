@@ -9,6 +9,7 @@ import {
 	AccordionTrigger
 } from '@/components/ui/accordion'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { Skeleton } from '@/components/ui/skeleton'
 import { useFetchRegions } from '@/features/regions/api/use-fetch-regions'
 import AddRegionCard from '@/features/regions/components/add-region-card'
 
@@ -28,13 +29,21 @@ const RegionsPage = () => {
 		)
 	}
 
-	// TODO: Add the Skeletons for the isPending state
 	if (isPending) {
 		return (
 			<div className='h-full'>
 				<TopBar title={'Regions'} />
-				<div className='flex flex-wrap items-center justify-center h-full p-4'>
-					Loading...
+				<div className='flex flex-wrap items-center justify-center h-full p-4 gap-4'>
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
 				</div>
 			</div>
 		)

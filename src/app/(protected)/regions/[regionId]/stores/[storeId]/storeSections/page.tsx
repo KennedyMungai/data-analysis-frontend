@@ -3,6 +3,7 @@
 import InfoCard from '@/components/info-card'
 import TopBar from '@/components/top-bar'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { Skeleton } from '@/components/ui/skeleton'
 import { useFetchStoresStoreSections } from '@/features/store-sections/api/use-fetch-store-store-sections'
 import AddStoreSectionCard from '@/features/store-sections/components/add-store-section-card'
 import { usePathname } from 'next/navigation'
@@ -19,17 +20,31 @@ const StoreSectionsPage = () => {
 		isError
 	} = useFetchStoresStoreSections(storeId)
 
-	if (isPending)
-		<div className='h-full'>
-			<TopBar title='Store Sections' />
-			Loading...
-		</div>
+	if (isPending) {
+		return (
+			<div className='h-full'>
+				<TopBar title={'Regions'} />
+				<div className='flex flex-wrap items-center justify-center h-full p-4 gap-4'>
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+				</div>
+			</div>
+		)
+	}
 
-	if (isError)
-		<div className='h-full'>
-			<TopBar title='Store Sections' />
-			Something went wrong
-		</div>
+	if (isError);
+	;<div className='h-full'>
+		<TopBar title={'Fetch Error'} />
+		Something went wrong
+	</div>
 
 	return (
 		<div className='h-full'>

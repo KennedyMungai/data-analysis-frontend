@@ -9,6 +9,7 @@ import {
 	AccordionTrigger
 } from '@/components/ui/accordion'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { Skeleton } from '@/components/ui/skeleton'
 import { useFetchRegion } from '@/features/regions/api/use-fetch-region'
 import { useFetchRegionStores } from '@/features/stores/api/use-fetch-region-stores'
 import AddStoreCard from '@/features/stores/components/add-store-card'
@@ -23,16 +24,27 @@ const StoresPage = () => {
 
 	const regionStoresQuery = useFetchRegionStores(regionId)
 
-	if (regionQuery.isPending) {
+	if (regionQuery.isPending || regionStoresQuery.isPending) {
 		return (
 			<div className='h-full'>
-				<TopBar title={''} />
-				Loading...
+				<TopBar title={'Regions'} />
+				<div className='flex flex-wrap items-center justify-center h-full p-4 gap-4'>
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+					<Skeleton className='shadow-md w-64 min-h-72 p-2' />
+				</div>
 			</div>
 		)
 	}
 
-	if (regionQuery.isError)
+	if (regionQuery.isError || regionStoresQuery.isError)
 		<div className='h-full'>
 			<TopBar title={'Fetch Error'} />
 			Something went wrong
