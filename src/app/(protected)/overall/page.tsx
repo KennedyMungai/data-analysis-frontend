@@ -12,7 +12,7 @@ import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
 
 const OverallDataPage = () => {
-	const { data, isPending, isError } = useFetchAllRegions()
+	const { data: Regions, isPending, isError } = useFetchAllRegions()
 
 	const initialRange: DateRange = {
 		from: subDays(new Date(), 7),
