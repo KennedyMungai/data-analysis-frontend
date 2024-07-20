@@ -21,7 +21,7 @@ const DateFilter = ({ range, setRange }: Props) => {
 			<PopoverTrigger>
 				<Button variant={'outline'}>Date Picker</Button>
 			</PopoverTrigger>
-			<PopoverContent>
+			<PopoverContent className='w-fit'>
 				<Calendar
 					mode='range'
 					selected={range}
