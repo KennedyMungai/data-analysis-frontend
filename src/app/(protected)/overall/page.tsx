@@ -1,5 +1,6 @@
 'use client'
 
+import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
 import { Button } from '@/components/ui/button'
@@ -23,12 +24,7 @@ const OverallDataPage = () => {
 			<div className='h-full p-4'>
 				<div className='flex justify-around pb-2'>
 					<div>
-						<Calendar
-							mode='range'
-							selected={range}
-							onSelect={setRange}
-							className='rounded-md border'
-						/>
+						<DateFilter range={range} setRange={setRange} />
 					</div>
 					<div>
 						<Link href={'/overall/regions'}>
