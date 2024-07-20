@@ -40,11 +40,15 @@ const StoreSectionsPage = () => {
 		)
 	}
 
-	if (isError);
-	;<div className='h-full'>
-		<TopBar title={'Fetch Error'} />
-		Something went wrong
-	</div>
+	if (isError) {
+		return (
+			<div className='h-full'>
+				<TopBar title={'Fetch Error'} />
+				Something went wrong
+			</div>
+		)
+	}
+		
 
 	return (
 		<div className='h-full'>
