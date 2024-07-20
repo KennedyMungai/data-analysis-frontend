@@ -119,7 +119,7 @@ const NewIncidentSheet = ({
 												</FormLabel>
 												<FormControl>
 													<Input
-														placeholder='E.g. Kanyenya-ini, Kwa Njenga'
+														placeholder='E.g. Pilferage, Shoplifting'
 														{...field}
 													/>
 												</FormControl>
@@ -142,7 +142,7 @@ const NewIncidentSheet = ({
 												</FormLabel>
 												<FormControl>
 													<Input
-														placeholder='E.g. Kanyenya-ini, Kwa Njenga'
+														placeholder='The Product Code'
 														{...field}
 													/>
 												</FormControl>
@@ -165,7 +165,7 @@ const NewIncidentSheet = ({
 												</FormLabel>
 												<FormControl>
 													<Input
-														placeholder='E.g. Kanyenya-ini, Kwa Njenga'
+														placeholder='The quantity of the product'
 														type='number'
 														{...field}
 													/>
@@ -189,7 +189,7 @@ const NewIncidentSheet = ({
 												</FormLabel>
 												<FormControl>
 													<Input
-														placeholder='E.g. Kanyenya-ini, Kwa Njenga'
+														placeholder='The Price of the product'
 														type='number'
 														{...field}
 													/>
@@ -211,7 +211,6 @@ const NewIncidentSheet = ({
 												<FormLabel>Region ID</FormLabel>
 												<FormControl>
 													<Input
-														placeholder='E.g. Kanyenya-ini, Kwa Njenga'
 														disabled
 														{...field}
 													/>
@@ -233,7 +232,6 @@ const NewIncidentSheet = ({
 												<FormLabel>Store ID</FormLabel>
 												<FormControl>
 													<Input
-														placeholder='E.g. Kanyenya-ini, Kwa Njenga'
 														disabled
 														{...field}
 													/>
@@ -257,7 +255,6 @@ const NewIncidentSheet = ({
 												</FormLabel>
 												<FormControl>
 													<Input
-														placeholder='E.g. Kanyenya-ini, Kwa Njenga'
 														disabled
 														{...field}
 													/>
@@ -281,7 +278,6 @@ const NewIncidentSheet = ({
 												</FormLabel>
 												<FormControl>
 													<Input
-														placeholder='E.g. Kanyenya-ini, Kwa Njenga'
 														disabled
 														{...field}
 													/>
