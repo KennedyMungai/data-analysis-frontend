@@ -1,5 +1,6 @@
 'use client'
 
+import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
 import { Button } from '@/components/ui/button'
@@ -7,7 +8,10 @@ import NewIncidentSheet from '@/features/incidents/components/new-incident-sheet
 import { useNewIncident } from '@/features/incidents/hooks/use-new-incident'
 import { useFetchSingleStoreSection } from '@/features/store-sections/api/use-fetch-single-store-section'
 import { useFetchSingleStore } from '@/features/stores/api/use-fetch-single-store'
+import { addDays } from 'date-fns'
 import { usePathname } from 'next/navigation'
+import { useState } from 'react'
+import { DateRange } from 'react-day-picker'
 
 type Props = {
 	params: {
@@ -20,6 +24,13 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 
 	const storeId = pathname.split('/')[5]
 	const regionId = pathname.split('/')[3]
+
+	const initialRange: DateRange = {
+		from: new Date(),
+		to: addDays(new Date(), 4)
+	}
+
+	const [range, setRange] = useState<DateRange | undefined>(initialRange)
 
 	const { onOpen } = useNewIncident()
 
@@ -61,7 +72,7 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 				/>
 				<div className='flex justify-around py-2'>
 					<div>
-						{/* TODO: Add a calendar for specifying the time frame of the data being analyzed */}
+						<DateFilter range={range} setRange={setRange} />
 					</div>
 					<div>
 						<Button

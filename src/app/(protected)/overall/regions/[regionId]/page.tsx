@@ -1,10 +1,14 @@
 'use client'
 
+import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
 import { Button } from '@/components/ui/button'
 import { useFetchRegion } from '@/features/regions/api/use-fetch-region'
+import { addDays } from 'date-fns'
 import Link from 'next/link'
+import { useState } from 'react'
+import { DateRange } from 'react-day-picker'
 
 type Props = {
 	params: {
@@ -14,6 +18,13 @@ type Props = {
 
 const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 	const { data: region, isPending, isError } = useFetchRegion(regionId)
+
+	const initialRange: DateRange = {
+		from: new Date(),
+		to: addDays(new Date(), 4)
+	}
+
+	const [range, setRange] = useState<DateRange | undefined>(initialRange)
 
 	if (isPending) {
 		return (
@@ -41,7 +52,7 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 			<div className='h-full p-4'>
 				<div className='flex justify-around pb-2'>
 					<div>
-						{/* TODO: Add a calendar for specifying the time frame of the data being analyzed */}
+						<DateFilter range={range} setRange={setRange} />
 					</div>
 					<div>
 						<Link
