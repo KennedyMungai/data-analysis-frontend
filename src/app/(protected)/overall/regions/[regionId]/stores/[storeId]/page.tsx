@@ -18,7 +18,7 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 	const regionId = pathname.split('/')[3]
 
 	return (
-		<div>
+		<div className='h-full p-2'>
 			<TopBar title='Some Store' />
 			<div className='h-full p-4'>
 				<div className='flex justify-around pb-2'>

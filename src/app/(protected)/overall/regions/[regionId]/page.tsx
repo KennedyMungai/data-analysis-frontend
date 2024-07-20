@@ -36,7 +36,7 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 	}
 
 	return (
-		<div className='h-full'>
+		<div className='h-full p-2'>
 			<TopBar title={region.region_name} />
 			<div className='h-full p-4'>
 				<div className='flex justify-around pb-2'>

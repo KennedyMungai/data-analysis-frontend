@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const OverallDataPage = () => {
 	return (
-		<div className='h-full'>
+		<div className='h-full p-2'>
 			<TopBar title={'Overall Data'} />
 			<div className='h-full p-4'>
 				<div className='flex justify-around pb-2'>

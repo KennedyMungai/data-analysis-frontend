@@ -55,7 +55,7 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 
 	return (
 		<>
-			<div className='h-full'>
+			<div className='h-full p-2'>
 				<TopBar
 					title={`${store.store_name} ${storeSection.store_section_name}`}
 				/>
