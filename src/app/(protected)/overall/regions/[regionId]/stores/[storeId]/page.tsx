@@ -15,7 +15,7 @@ type Props = {
 const IndividualStorePage = ({ params: { storeId } }: Props) => {
 	const pathname = usePathname()
 
-	const regionId = pathname.split('/')[2]
+	const regionId = pathname.split('/')[3]
 
 	return (
 		<div>

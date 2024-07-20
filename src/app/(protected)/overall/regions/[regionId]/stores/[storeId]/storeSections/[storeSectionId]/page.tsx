@@ -18,8 +18,8 @@ type Props = {
 const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 	const pathname = usePathname()
 
-	const storeId = pathname.split('/')[4]
-	const regionId = pathname.split('/')[2]
+	const storeId = pathname.split('/')[5]
+	const regionId = pathname.split('/')[3]
 
 	const { onOpen } = useNewIncident()
 

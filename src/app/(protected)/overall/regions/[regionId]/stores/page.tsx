@@ -18,7 +18,7 @@ import { usePathname } from 'next/navigation'
 const StoresPage = () => {
 	const pathname = usePathname()
 
-	const regionId = pathname.split('/')[2]
+	const regionId = pathname.split('/')[3]
 
 	const regionQuery = useFetchRegion(regionId)
 

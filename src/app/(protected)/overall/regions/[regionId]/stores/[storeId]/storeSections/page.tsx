@@ -11,8 +11,8 @@ import { usePathname } from 'next/navigation'
 const StoreSectionsPage = () => {
 	const pathname = usePathname()
 
-	const regionId = pathname.split('/')[2]
-	const storeId = pathname.split('/')[4]
+	const regionId = pathname.split('/')[3]
+	const storeId = pathname.split('/')[5]
 
 	const {
 		data: storeSections,

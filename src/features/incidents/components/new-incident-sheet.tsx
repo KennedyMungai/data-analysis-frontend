@@ -76,14 +76,14 @@ const NewIncidentSheet = ({
 
 	return (
 		<Dialog open={isOpen} onOpenChange={onClose}>
-			<DialogContent className='w-[70vw] p-4'>
+			<DialogContent className='p-4'>
 				<DialogHeader>
 					<SheetTitle className='text-2xl text-center capitalize'>
 						Create a New Incident
 					</SheetTitle>
 				</DialogHeader>
 				<ScrollArea className='h-[70vh] px-2 py-4'>
-					<div className='h-auto'>
+					<div className='h-auto p-4'>
 						<Form {...form}>
 							<form onSubmit={form.handleSubmit(handleSubmit)}>
 								<FormField
@@ -98,7 +98,6 @@ const NewIncidentSheet = ({
 												<FormControl>
 													<Textarea
 														placeholder='The incident description'
-														className='m-2'
 														{...field}
 													/>
 												</FormControl>
