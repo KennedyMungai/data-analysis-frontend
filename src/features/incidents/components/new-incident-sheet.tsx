@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog'
 import {
 	Form,
 	FormControl,
@@ -74,14 +75,14 @@ const NewIncidentSheet = ({
 	}
 
 	return (
-		<Sheet open={isOpen} onOpenChange={onClose}>
-			<SheetContent>
-				<SheetHeader>
+		<Dialog open={isOpen} onOpenChange={onClose}>
+			<DialogContent className='w-[70vw] p-4'>
+				<DialogHeader>
 					<SheetTitle className='text-2xl text-center capitalize'>
 						Create a New Incident
 					</SheetTitle>
-				</SheetHeader>
-				<ScrollArea className='h-full px-2 py-4'>
+				</DialogHeader>
+				<ScrollArea className='h-[70vh] px-2 py-4'>
 					<div className='h-auto'>
 						<Form {...form}>
 							<form onSubmit={form.handleSubmit(handleSubmit)}>
@@ -97,6 +98,7 @@ const NewIncidentSheet = ({
 												<FormControl>
 													<Textarea
 														placeholder='The incident description'
+														className='m-2'
 														{...field}
 													/>
 												</FormControl>
@@ -297,8 +299,8 @@ const NewIncidentSheet = ({
 						</Form>
 					</div>
 				</ScrollArea>
-			</SheetContent>
-		</Sheet>
+			</DialogContent>
+		</Dialog>
 	)
 }
 
