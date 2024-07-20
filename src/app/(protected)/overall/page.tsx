@@ -4,16 +4,15 @@ import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
 import { Button } from '@/components/ui/button'
-import { Calendar } from '@/components/ui/calendar'
-import { addDays } from 'date-fns'
+import { subDays } from 'date-fns'
 import Link from 'next/link'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
 
 const OverallDataPage = () => {
 	const initialRange: DateRange = {
-		from: new Date(),
-		to: addDays(new Date(), 4)
+		from: subDays(new Date(), 7),
+		to: new Date()
 	}
 
 	const [range, setRange] = useState<DateRange | undefined>(initialRange)

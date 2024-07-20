@@ -4,7 +4,7 @@ import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
 import { Button } from '@/components/ui/button'
-import { addDays } from 'date-fns'
+import { subDays } from 'date-fns'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
@@ -22,8 +22,8 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 	const regionId = pathname.split('/')[3]
 
 	const initialRange: DateRange = {
-		from: new Date(),
-		to: addDays(new Date(), 4)
+		from: subDays(new Date(), 7),
+		to: new Date()
 	}
 
 	const [range, setRange] = useState<DateRange | undefined>(initialRange)

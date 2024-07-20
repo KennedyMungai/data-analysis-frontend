@@ -8,7 +8,7 @@ import NewIncidentSheet from '@/features/incidents/components/new-incident-sheet
 import { useNewIncident } from '@/features/incidents/hooks/use-new-incident'
 import { useFetchSingleStoreSection } from '@/features/store-sections/api/use-fetch-single-store-section'
 import { useFetchSingleStore } from '@/features/stores/api/use-fetch-single-store'
-import { addDays } from 'date-fns'
+import { subDays } from 'date-fns'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
@@ -26,8 +26,8 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 	const regionId = pathname.split('/')[3]
 
 	const initialRange: DateRange = {
-		from: new Date(),
-		to: addDays(new Date(), 4)
+		from: subDays(new Date(), 7),
+		to: new Date()
 	}
 
 	const [range, setRange] = useState<DateRange | undefined>(initialRange)

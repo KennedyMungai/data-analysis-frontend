@@ -5,7 +5,7 @@ import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
 import { Button } from '@/components/ui/button'
 import { useFetchRegion } from '@/features/regions/api/use-fetch-region'
-import { addDays } from 'date-fns'
+import { addDays, subDays } from 'date-fns'
 import Link from 'next/link'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
@@ -20,8 +20,8 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 	const { data: region, isPending, isError } = useFetchRegion(regionId)
 
 	const initialRange: DateRange = {
-		from: new Date(),
-		to: addDays(new Date(), 4)
+		from: subDays(new Date(), 7),
+		to: new Date()
 	}
 
 	const [range, setRange] = useState<DateRange | undefined>(initialRange)
