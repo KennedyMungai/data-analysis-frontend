@@ -25,7 +25,7 @@ const OverallDataPage = () => {
 					</div>
 					<div />
 				</div>
-				<div className='flex justify-between'>
+				<div className='flex justify-between gap-x-2'>
 					<SummaryCard label='Total Amount' amount={0} />
 					<SummaryCard label='Total Number of Incidents' amount={0} />
 					<SummaryCard label='Total ' amount={0} />
