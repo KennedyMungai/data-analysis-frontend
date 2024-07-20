@@ -27,7 +27,7 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 					</div>
 					<div>
 						<Link
-							href={`/regions/${regionId}/stores/${storeId}/storeSections`}
+							href={`/overall/regions/${regionId}/stores/${storeId}/storeSections`}
 						>
 							<Button
 								size={'lg'}

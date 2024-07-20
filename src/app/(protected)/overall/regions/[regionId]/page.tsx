@@ -44,7 +44,9 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 						{/* TODO: Add a calendar for specifying the time frame of the data being analyzed */}
 					</div>
 					<div>
-						<Link href={`/regions/${region.region_id}/stores`}>
+						<Link
+							href={`/overall/regions/${region.region_id}/stores`}
+						>
 							<Button
 								size={'lg'}
 								variant={'outline'}

@@ -48,7 +48,6 @@ const StoreSectionsPage = () => {
 			</div>
 		)
 	}
-		
 
 	return (
 		<div className='h-full'>
@@ -57,7 +56,7 @@ const StoreSectionsPage = () => {
 				<div className='gap-x-4 gap-y-8 flex flex-wrap items-center justify-center h-full p-4'>
 					{storeSections?.map((storeSection) => (
 						<InfoCard
-							link={`/regions/${regionId}/stores/${storeId}/storeSections/${storeSection.store_section_id}`}
+							link={`/overall/regions/${regionId}/stores/${storeId}/storeSections/${storeSection.store_section_id}`}
 							title={storeSection.store_section_name}
 							key={storeSection.store_section_id}
 						/>

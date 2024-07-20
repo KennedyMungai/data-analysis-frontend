@@ -57,7 +57,7 @@ const StoresPage = () => {
 				<div className='gap-x-4 gap-y-8 flex flex-wrap items-center justify-center h-full p-4'>
 					{regionStoresQuery.data?.map((store) => (
 						<InfoCard
-							link={`/regions/${regionId}/stores/${store.store_id}`}
+							link={`/overall/regions/${regionId}/stores/${store.store_id}`}
 							title={store.store_name}
 							key={store.store_id}
 						>

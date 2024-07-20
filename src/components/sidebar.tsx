@@ -8,7 +8,7 @@ const SideBar = () => {
 	return (
 		<nav className='flex flex-col justify-between h-full py-8 border-r shadow-sm'>
 			<div className='flex flex-col items-center h-full'>
-				<Link href={'/'}>
+				<Link href={'/overall'}>
 					<Image
 						src={'/icon.svg'}
 						width={60}

@@ -58,7 +58,7 @@ const RegionsPage = () => {
 				<div className='w-full h-full flex flex-wrap items-center justify-center gap-4'>
 					{regions.map((region) => (
 						<InfoCard
-							link={`/regions/${region.region_id}`}
+							link={`/overall/regions/${region.region_id}`}
 							title={`${region.region_name}`}
 							key={region.region_id}
 						>
