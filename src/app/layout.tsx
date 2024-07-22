@@ -2,6 +2,7 @@ import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 import QueryProvider from '@/providers/query-provider'
 import { ThemeProvider } from '@/providers/theme-provider'
+import { UserProvider } from '@auth0/nextjs-auth0/client'
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 import './globals.css'
@@ -28,8 +29,10 @@ export default function RootLayout({
 			>
 				<ThemeProvider>
 					<QueryProvider>
-						<Toaster />
-						{children}
+						<UserProvider>
+							<Toaster />
+							{children}
+						</UserProvider>
 					</QueryProvider>
 				</ThemeProvider>
 			</body>

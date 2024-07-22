@@ -12,6 +12,7 @@ import { subDays } from 'date-fns'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
+import { useUser } from '@auth0/nextjs-auth0/client'
 
 type Props = {
 	params: {
@@ -33,6 +34,8 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 	const [range, setRange] = useState<DateRange | undefined>(initialRange)
 
 	const { onOpen } = useNewIncident()
+
+	const { user } = useUser()
 
 	const {
 		data: storeSection,
@@ -94,7 +97,9 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 			</div>
 			<NewIncidentSheet
 				// TODO: Add the employee ID
-				employeeId={''}
+				employeeId={user!.sub!}
+				employeeName={user!.name!}
+				employeeEmail={user!.email!}
 				storeSectionId={storeSectionId}
 				storeId={storeId}
 				regionId={regionId}

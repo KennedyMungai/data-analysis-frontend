@@ -3,9 +3,8 @@ interface IRegion {
 	region_id: string
 	created_at: string
 	updated_at: string
-	stores: IStore[]
-	employees: IEmployee[]
-	incidents: IIncident[]
+	stores: Store[]
+	incidents: Incident[]
 }
 
 interface IStore {
@@ -13,27 +12,16 @@ interface IStore {
 	store_id: string
 	created_at: string
 	updated_at: string
-	employees: IEmployee[]
-	incidents: IIncident[]
-	store_sections: IStoreSection[]
+	incidents: Incident[]
+	store_sections: Storesection[]
 }
 
-interface IStoreSection {
+interface IStoresection {
 	store_section_name: string
 	store_section_id: string
 	created_at: string
 	updated_at: string
-	incidents: IIncident[]
-}
-
-interface IEmployee {
-	employee_name: string
-	employee_email: string
-	employee_phone_number: string
-	employee_id: string
-	created_at: string
-	updated_at: string
-	incidents: IIncident[]
+	incidents: Incident[]
 }
 
 interface IIncident {
@@ -75,4 +63,6 @@ interface ICreateIncident {
 	store_id: string
 	store_section_id: string
 	employee_id: string
+	employee_name: string
+	employee_email: string
 }

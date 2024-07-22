@@ -75,26 +75,6 @@ const RegionsPage = () => {
 										</ul>
 									</AccordionContent>
 								</AccordionItem>
-								<AccordionItem value='employees'>
-									<AccordionTrigger>
-										Employees
-									</AccordionTrigger>
-									<AccordionContent>
-										<ul className='text-start text-md'>
-											{region.employees.map(
-												(employee) => (
-													<li
-														key={
-															employee.employee_id
-														}
-													>
-														{employee.employee_name}
-													</li>
-												)
-											)}
-										</ul>
-									</AccordionContent>
-								</AccordionItem>
 							</Accordion>
 						</InfoCard>
 					))}

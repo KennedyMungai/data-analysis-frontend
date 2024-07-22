@@ -1,7 +1,12 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog'
+import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle
+} from '@/components/ui/dialog'
 import {
 	Form,
 	FormControl,
@@ -13,12 +18,6 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import {
-	Sheet,
-	SheetContent,
-	SheetHeader,
-	SheetTitle
-} from '@/components/ui/sheet'
 import { Textarea } from '@/components/ui/textarea'
 import { useCreateIncident } from '@/features/incidents/api/use-create-incident'
 import { useNewIncident } from '@/features/incidents/hooks/use-new-incident'
@@ -28,6 +27,8 @@ import { z } from 'zod'
 
 type Props = {
 	employeeId: string
+	employeeName: string
+	employeeEmail: string
 	storeSectionId: string
 	storeId: string
 	regionId: string
@@ -37,9 +38,12 @@ const formSchema = z.object({
 	incident_description: z.string().min(1, 'Incident Description is required'),
 	product_name: z.string().min(1, 'Product Name is required'),
 	product_code: z.string().min(1, 'Product Code is required'),
-	product_price: z.number().min(1, 'Product Code is required'),
+	product_price: z.coerce.number().gte(0, 'Must be a positive number'),
+	product_quantity: z.coerce.number().gte(0, 'Must be a positive number'),
 	region_id: z.string().min(1, 'Region is required'),
 	employee_id: z.string().min(1, 'Employee is required'),
+	employee_name: z.string().min(1, 'Employee Name is required'),
+	employee_email: z.string().min(1, 'Employee Email is required'),
 	store_id: z.string().min(1, 'Store is required'),
 	store_section_id: z.string().min(1, 'Store Section is required')
 })
@@ -48,7 +52,9 @@ const NewIncidentSheet = ({
 	regionId,
 	employeeId,
 	storeId,
-	storeSectionId
+	storeSectionId,
+	employeeName,
+	employeeEmail
 }: Props) => {
 	const { isOpen, onClose } = useNewIncident()
 
@@ -58,9 +64,12 @@ const NewIncidentSheet = ({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			employee_id: employeeId,
+			employee_email: employeeEmail,
+			employee_name: employeeName,
 			incident_description: '',
 			product_code: '',
 			product_name: '',
+			product_quantity: 0,
 			product_price: 0,
 			region_id: regionId,
 			store_id: storeId,
@@ -69,6 +78,8 @@ const NewIncidentSheet = ({
 	})
 
 	const handleSubmit = async (values: ICreateIncident) => {
+		console.log(values)
+
 		mutate(values, { onSuccess: () => onClose() })
 
 		form.reset()
@@ -78,9 +89,9 @@ const NewIncidentSheet = ({
 		<Dialog open={isOpen} onOpenChange={onClose}>
 			<DialogContent className='p-4'>
 				<DialogHeader>
-					<SheetTitle className='text-2xl text-center capitalize'>
+					<DialogTitle className='text-2xl text-center capitalize'>
 						Create a New Incident
-					</SheetTitle>
+					</DialogTitle>
 				</DialogHeader>
 				<ScrollArea className='h-[70vh] px-2 py-4'>
 					<div className='h-auto p-4'>
@@ -93,7 +104,7 @@ const NewIncidentSheet = ({
 										return (
 											<FormItem>
 												<FormLabel>
-													Store Name
+													Incident Description
 												</FormLabel>
 												<FormControl>
 													<Textarea
@@ -285,6 +296,52 @@ const NewIncidentSheet = ({
 												</FormControl>
 												<FormDescription>
 													The ID of the Employee
+												</FormDescription>
+												<FormMessage />
+											</FormItem>
+										)
+									}}
+								/>
+								<FormField
+									control={form.control}
+									name='employee_name'
+									render={({ field }) => {
+										return (
+											<FormItem>
+												<FormLabel>
+													Employee Name
+												</FormLabel>
+												<FormControl>
+													<Input
+														disabled
+														{...field}
+													/>
+												</FormControl>
+												<FormDescription>
+													The name of the Employee
+												</FormDescription>
+												<FormMessage />
+											</FormItem>
+										)
+									}}
+								/>
+								<FormField
+									control={form.control}
+									name='employee_email'
+									render={({ field }) => {
+										return (
+											<FormItem>
+												<FormLabel>
+													Employee Email
+												</FormLabel>
+												<FormControl>
+													<Input
+														disabled
+														{...field}
+													/>
+												</FormControl>
+												<FormDescription>
+													The Email of the Employee
 												</FormDescription>
 												<FormMessage />
 											</FormItem>

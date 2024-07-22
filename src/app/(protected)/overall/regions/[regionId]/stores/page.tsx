@@ -84,26 +84,6 @@ const StoresPage = () => {
 										</ul>
 									</AccordionContent>
 								</AccordionItem>
-								<AccordionItem value='employees'>
-									<AccordionTrigger>
-										Employees
-									</AccordionTrigger>
-									<AccordionContent>
-										<ul className='text-start text-md'>
-											{store.employees?.map(
-												(employee) => (
-													<li
-														key={
-															employee.employee_id
-														}
-													>
-														{employee.employee_name}
-													</li>
-												)
-											)}
-										</ul>
-									</AccordionContent>
-								</AccordionItem>
 							</Accordion>
 						</InfoCard>
 					))}
