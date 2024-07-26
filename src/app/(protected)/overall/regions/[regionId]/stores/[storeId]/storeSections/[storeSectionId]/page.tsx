@@ -76,6 +76,10 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 		)
 	}
 
+	const totalAmount = incidents.reduce((acc, incident) => {
+		return acc + incident.product_price * incident.product_quantity
+	}, 0)
+
 	return (
 		<>
 			<div className='h-full p-2'>
@@ -99,9 +103,18 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 					<div />
 				</div>
 				<div className='flex justify-between gap-x-2'>
-					<SummaryCard label='Total Amount' amount={0} />
-					<SummaryCard label='Total Number of Incidents' amount={0} />
-					<SummaryCard label='Total ' amount={0} />
+					<SummaryCard
+						label='Total Amount'
+						amount={`Ksh ${totalAmount}`}
+					/>
+					<SummaryCard
+						label='Total Number of Incidents'
+						amount={incidents.length.toString()}
+					/>
+					<SummaryCard
+						label='Average '
+						amount={`Ksh ${totalAmount / incidents.length}`}
+					/>
 				</div>
 				<div className='h-[60vh] my-3'>
 					{/* @ts-ignore */}
