@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 
 type Props = {
 	label: string
-	amount: number
+	amount: string
 }
 
 const SummaryCard = ({ amount, label }: Props) => {
@@ -12,7 +12,7 @@ const SummaryCard = ({ amount, label }: Props) => {
 				{label}
 			</CardHeader>
 			<CardContent className='text-muted-foreground text-lg text-center'>
-				Ksh {amount}
+				{amount}
 			</CardContent>
 		</Card>
 	)
