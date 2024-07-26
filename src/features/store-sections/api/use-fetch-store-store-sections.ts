@@ -7,5 +7,5 @@ export const useFetchStoresStoreSections = (storeId: string) =>
 		queryFn: async () =>
 			await axios
 				.get(`http://localhost:8000/store_sections/store/${storeId}`)
-				.then((res) => res.data as IStoreSection[])
+				.then((res) => res.data as IStoresection[])
 	})

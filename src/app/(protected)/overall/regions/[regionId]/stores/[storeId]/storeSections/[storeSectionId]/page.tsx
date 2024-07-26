@@ -4,15 +4,18 @@ import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
 import { Button } from '@/components/ui/button'
+import { useFetchStoreSectionIncidents } from '@/features/incidents/api/use-fetch-store-section-incidents'
 import NewIncidentSheet from '@/features/incidents/components/new-incident-sheet'
 import { useNewIncident } from '@/features/incidents/hooks/use-new-incident'
 import { useFetchSingleStoreSection } from '@/features/store-sections/api/use-fetch-single-store-section'
 import { useFetchSingleStore } from '@/features/stores/api/use-fetch-single-store'
+import { useUser } from '@auth0/nextjs-auth0/client'
 import { subDays } from 'date-fns'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
-import { useUser } from '@auth0/nextjs-auth0/client'
+import { columns } from './columns'
+import DataTable from './data-table'
 
 type Props = {
 	params: {
@@ -49,7 +52,13 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 		isError: isStoreError
 	} = useFetchSingleStore(storeId)
 
-	if (isStoreSectionPending || isStorePending) {
+	const {
+		data: incidents,
+		isPending: isIncidentsPending,
+		isError: isIncidentsError
+	} = useFetchStoreSectionIncidents(storeSectionId)
+
+	if (isStoreSectionPending || isStorePending || isIncidentsPending) {
 		return (
 			<div className='h-full'>
 				<TopBar title={''} />
@@ -58,7 +67,7 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 		)
 	}
 
-	if (isStoreSectionError || isStoreError) {
+	if (isStoreSectionError || isStoreError || isIncidentsError) {
 		return (
 			<div className='h-full'>
 				<TopBar title={''} />
@@ -94,9 +103,12 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 					<SummaryCard label='Total Number of Incidents' amount={0} />
 					<SummaryCard label='Total ' amount={0} />
 				</div>
+				<div className='h-[60vh] my-3'>
+					{/* @ts-ignore */}
+					<DataTable columns={columns} data={[...incidents]} />
+				</div>
 			</div>
 			<NewIncidentSheet
-				// TODO: Add the employee ID
 				employeeId={user!.sub!}
 				employeeName={user!.name!}
 				employeeEmail={user!.email!}
