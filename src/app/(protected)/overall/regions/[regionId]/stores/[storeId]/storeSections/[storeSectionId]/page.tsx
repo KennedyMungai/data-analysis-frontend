@@ -103,17 +103,14 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 					<div />
 				</div>
 				<div className='flex justify-between gap-x-2'>
-					<SummaryCard
-						label='Total Amount'
-						amount={`Ksh ${totalAmount}`}
-					/>
+					<SummaryCard label='Total Amount' amount={totalAmount} />
 					<SummaryCard
 						label='Total Number of Incidents'
-						amount={incidents.length.toString()}
+						amount={incidents.length}
 					/>
 					<SummaryCard
 						label='Average '
-						amount={`Ksh ${totalAmount / incidents.length}`}
+						amount={totalAmount / incidents.length}
 					/>
 				</div>
 				<div className='h-[60vh] my-3'>

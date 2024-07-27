@@ -4,11 +4,15 @@ import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
 import { Button } from '@/components/ui/button'
+import { useFetchStoresStoreSections } from '@/features/store-sections/api/use-fetch-store-store-sections'
+import { useFetchSingleStore } from '@/features/stores/api/use-fetch-single-store'
+import { useFetchStoreIncidents } from '@/features/stores/api/use-fetch-store-incidents'
 import { subDays } from 'date-fns'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
+import StoreChart from './store-chart'
 
 type Props = {
 	params: {
@@ -28,9 +32,56 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 
 	const [range, setRange] = useState<DateRange | undefined>(initialRange)
 
+	const {
+		data: incidents,
+		isPending: isStoreIncidentsPending,
+		isError: isStoreIncidentsError
+	} = useFetchStoreIncidents(storeId)
+
+	const {
+		data: storeSections,
+		isPending: isStoreSectionsPending,
+		isError: isStoreSectionsError
+	} = useFetchStoresStoreSections(storeId)
+
+	const {
+		data: store,
+		isPending: isStorePending,
+		isError: isStoreError
+	} = useFetchSingleStore(storeId)
+
+	if (isStoreIncidentsPending || isStoreSectionsPending || isStorePending) {
+		return <div>Loading...</div>
+	}
+
+	if (isStoreIncidentsError || isStoreSectionsError || isStoreError) {
+		return <div>Error</div>
+	}
+
+	const totalValue = incidents.reduce((acc, incident) => {
+		return acc + incident.product_price * incident.product_quantity
+	}, 0)
+
+	const chartData = storeSections.map((storeSection) => {
+		return {
+			storeSection: storeSection.store_section_name,
+			value: incidents
+				.filter(
+					(incident) =>
+						incident.store_section_id ===
+						storeSection.store_section_id
+				)
+				.reduce((acc, incident) => {
+					return (
+						acc + incident.product_price * incident.product_quantity
+					)
+				}, 0)
+		}
+	})
+
 	return (
 		<div className='h-full p-2'>
-			<TopBar title='Some Store' />
+			<TopBar title={store.store_name} />
 			<div className='h-full p-4'>
 				<div className='flex justify-around pb-2'>
 					<div>
@@ -52,11 +103,20 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 					<div />
 				</div>
 				<div className='flex justify-between gap-x-2'>
-					<SummaryCard label='Total Amount' amount={0} />
-					<SummaryCard label='Total Number of Incidents' amount={0} />
-					<SummaryCard label='Total ' amount={0} />
+					<SummaryCard label='Total Amount' amount={totalValue} />
+					<SummaryCard
+						label='Total Number of Incidents'
+						amount={incidents.length}
+					/>
+					<SummaryCard
+						label='Average '
+						amount={Math.floor(totalValue / incidents.length)}
+					/>
 				</div>
-				{/* TODO: Add the charts and tables for analysis */}
+				<StoreChart
+					storeName={store.store_name}
+					storeSectionsData={chartData}
+				/>
 			</div>
 		</div>
 	)
