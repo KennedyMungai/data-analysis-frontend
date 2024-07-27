@@ -27,7 +27,7 @@ const chartConfig = {
 	}
 } satisfies ChartConfig
 
-const StoreChart = ({ label, data }: Props) => {
+const DataChart = ({ label, data }: Props) => {
 	return (
 		<Card className='my-4'>
 			<CardHeader>
@@ -66,4 +66,4 @@ const StoreChart = ({ label, data }: Props) => {
 	)
 }
 
-export default StoreChart
+export default DataChart

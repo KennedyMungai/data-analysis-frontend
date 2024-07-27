@@ -1,6 +1,6 @@
 'use client'
 
-import StoreChart from '@/components/data-chart'
+import DataChart from '@/components/data-chart'
 import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
@@ -113,7 +113,7 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 						amount={Math.floor(totalValue / incidents.length)}
 					/>
 				</div>
-				<StoreChart label={store.store_name} data={chartData} />
+				<DataChart label={store.store_name} data={chartData} />
 			</div>
 		</div>
 	)
