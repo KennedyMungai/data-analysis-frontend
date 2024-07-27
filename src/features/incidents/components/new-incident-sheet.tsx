@@ -78,8 +78,6 @@ const NewIncidentSheet = ({
 	})
 
 	const handleSubmit = async (values: ICreateIncident) => {
-		console.log(values)
-
 		mutate(values, { onSuccess: () => onClose() })
 
 		form.reset()
