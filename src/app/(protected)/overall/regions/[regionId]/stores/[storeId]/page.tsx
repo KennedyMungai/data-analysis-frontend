@@ -1,5 +1,6 @@
 'use client'
 
+import StoreChart from '@/components/data-chart'
 import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
@@ -12,7 +13,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
-import StoreChart from './store-chart'
 
 type Props = {
 	params: {
@@ -102,7 +102,7 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 					</div>
 					<div />
 				</div>
-				<div className='flex justify-between gap-x-2'>
+				<div className='gap-x-2 flex justify-between'>
 					<SummaryCard label='Total Amount' amount={totalValue} />
 					<SummaryCard
 						label='Total Number of Incidents'
@@ -113,10 +113,8 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 						amount={Math.floor(totalValue / incidents.length)}
 					/>
 				</div>
-				<StoreChart
-					storeName={store.store_name}
-					storeSectionsData={chartData}
-				/>
+				{/* @ts-ignore */}
+				<StoreChart label={store.store_name} data={chartData} />
 			</div>
 		</div>
 	)
