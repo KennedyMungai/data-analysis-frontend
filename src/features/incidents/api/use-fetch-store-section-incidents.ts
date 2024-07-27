@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const useFetchStoreSectionIncidents = (storeSectionId: string) =>
 	useQuery({
-		queryKey: ['incidents', { storeSectionId }],
+		queryKey: ['store_section_incidents', { storeSectionId }],
 		queryFn: async () =>
 			await axios
 				.get(

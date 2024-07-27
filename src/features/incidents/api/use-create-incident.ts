@@ -13,7 +13,9 @@ export const useCreateIncident = () => {
 				.then((res) => res.data as IIncident),
 		onSuccess: () => {
 			toast.success('Incident Created!')
-			queryClient.invalidateQueries({ queryKey: ['incidents'] })
+			queryClient.invalidateQueries({
+				queryKey: ['store_section_incidents']
+			})
 		},
 		onError: () => toast.error('Failed to Create Incident!')
 	})
