@@ -113,7 +113,6 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 						amount={Math.floor(totalValue / incidents.length)}
 					/>
 				</div>
-				{/* @ts-ignore */}
 				<StoreChart label={store.store_name} data={chartData} />
 			</div>
 		</div>
