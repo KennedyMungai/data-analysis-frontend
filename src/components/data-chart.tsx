@@ -13,11 +13,12 @@ import {
 	ChartTooltip,
 	ChartTooltipContent
 } from '@/components/ui/chart'
-import { Line, LineChart, CartesianGrid, XAxis, YAxis } from 'recharts'
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
 
 type Props = {
 	label: string
-	data: { sector: 'storeSection' | 'store' | 'region'; value: number }[]
+	data: { sector: string; value: number }[]
+	sector: string
 }
 
 const chartConfig = {
@@ -27,11 +28,13 @@ const chartConfig = {
 	}
 } satisfies ChartConfig
 
-const DataChart = ({ label, data }: Props) => {
+const DataChart = ({ label, data, sector }: Props) => {
 	return (
 		<Card className='my-4'>
 			<CardHeader>
-				<CardTitle>{label} Store Sections</CardTitle>
+				<CardTitle>
+					{label} {sector}s
+				</CardTitle>
 			</CardHeader>
 			<CardContent>
 				<ChartContainer config={chartConfig} className='min-h-[60vh]'>
@@ -41,7 +44,7 @@ const DataChart = ({ label, data }: Props) => {
 						margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
 					>
 						<CartesianGrid strokeDasharray={'3 3'} />
-						<XAxis dataKey='storeSection' fill='blue' />
+						<XAxis dataKey={sector} fill='blue' />
 						<YAxis dataKey={'value'} />
 						<ChartTooltip
 							cursor={false}
@@ -59,7 +62,7 @@ const DataChart = ({ label, data }: Props) => {
 			</CardContent>
 			<CardFooter>
 				<p className='text-xl font-semibold'>
-					The incident values in each store section
+					{`The incident values in each ${sector}`}
 				</p>
 			</CardFooter>
 		</Card>

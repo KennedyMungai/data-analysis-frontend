@@ -65,17 +65,9 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 	const chartData = storeSections.map((storeSection) => {
 		return {
 			storeSection: storeSection.store_section_name,
-			value: incidents
-				.filter(
-					(incident) =>
-						incident.store_section_id ===
-						storeSection.store_section_id
-				)
-				.reduce((acc, incident) => {
-					return (
-						acc + incident.product_price * incident.product_quantity
-					)
-				}, 0)
+			value: storeSection.incidents.reduce((acc, incident) => {
+				return acc + incident.product_price * incident.product_quantity
+			}, 0)
 		}
 	})
 
@@ -113,7 +105,11 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 						amount={Math.floor(totalValue / incidents.length)}
 					/>
 				</div>
-				<DataChart label={store.store_name} data={chartData} />
+				<DataChart
+					label={store.store_name}
+					data={chartData}
+					sector={'storeSection'}
+				/>
 			</div>
 		</div>
 	)

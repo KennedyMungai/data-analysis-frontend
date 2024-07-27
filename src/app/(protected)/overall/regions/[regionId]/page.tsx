@@ -1,11 +1,13 @@
 'use client'
 
+import DataChart from '@/components/data-chart'
 import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
 import { Button } from '@/components/ui/button'
 import { useFetchRegion } from '@/features/regions/api/use-fetch-region'
-import { addDays, subDays } from 'date-fns'
+import { useFetchRegionStores } from '@/features/stores/api/use-fetch-region-stores'
+import { subDays } from 'date-fns'
 import Link from 'next/link'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
@@ -17,7 +19,16 @@ type Props = {
 }
 
 const IndividualRegionPage = ({ params: { regionId } }: Props) => {
-	const { data: region, isPending, isError } = useFetchRegion(regionId)
+	const {
+		data: region,
+		isPending: isRegionPending,
+		isError: isRegionError
+	} = useFetchRegion(regionId)
+	const {
+		data: stores,
+		isPending: isStoresPending,
+		isError: isStoresError
+	} = useFetchRegionStores(regionId)
 
 	const initialRange: DateRange = {
 		from: subDays(new Date(), 7),
@@ -26,7 +37,7 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 
 	const [range, setRange] = useState<DateRange | undefined>(initialRange)
 
-	if (isPending) {
+	if (isRegionPending || isStoresPending) {
 		return (
 			<div className='h-full'>
 				<TopBar title={''} />
@@ -35,7 +46,7 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 		)
 	}
 
-	if (isError) {
+	if (isRegionError || isStoresError) {
 		return (
 			<div className='h-full'>
 				<TopBar title={regionId} />
@@ -45,6 +56,15 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 			</div>
 		)
 	}
+
+	const chartData = stores.map((store) => {
+		return {
+			store: store.store_name,
+			value: store.incidents.reduce((acc, incident) => {
+				return acc + incident.product_price * incident.product_quantity
+			}, 0)
+		}
+	})
 
 	return (
 		<div className='h-full p-2'>
@@ -69,12 +89,12 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 					</div>
 					<div />
 				</div>
-				<div className='flex justify-between gap-x-2'>
+				<div className='gap-x-2 flex justify-between'>
 					<SummaryCard label='Total Amount' amount={0} />
 					<SummaryCard label='Total Number of Incidents' amount={0} />
 					<SummaryCard label='Total ' amount={0} />
 				</div>
-				{/* TODO: Add the charts and tables for analysis */}
+				<DataChart data={chartData} label={region.region_name} sector={'store'} />
 			</div>
 		</div>
 	)
