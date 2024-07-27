@@ -64,7 +64,7 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 
 	const chartData = storeSections.map((storeSection) => {
 		return {
-			storeSection: storeSection.store_section_name,
+			sector: storeSection.store_section_name,
 			value: storeSection.incidents.reduce((acc, incident) => {
 				return acc + incident.product_price * incident.product_quantity
 			}, 0)

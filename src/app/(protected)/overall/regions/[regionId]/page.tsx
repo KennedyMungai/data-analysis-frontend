@@ -59,7 +59,7 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 
 	const chartData = stores.map((store) => {
 		return {
-			store: store.store_name,
+			sector: store.store_name,
 			value: store.incidents.reduce((acc, incident) => {
 				return acc + incident.product_price * incident.product_quantity
 			}, 0)

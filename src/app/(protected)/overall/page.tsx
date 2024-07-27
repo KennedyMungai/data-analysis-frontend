@@ -60,7 +60,7 @@ const OverallDataPage = () => {
 
 	const chartData = regions.map((region) => {
 		return {
-			label: region.region_name,
+			sector: region.region_name,
 			value: region.incidents.reduce((acc, incident) => {
 				acc + incident.product_price * incident.product_quantity
 			}, 0) as number
