@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const SideBar = () => {
 	return (
-		<nav className='flex flex-col justify-between h-full py-8 border-r shadow-sm'>
+		<nav className='fixed flex flex-col items-center justify-between h-full px-4 py-8 border-r shadow-sm'>
 			<div className='flex flex-col items-center h-full'>
 				<Link href={'/overall'}>
 					<Image
