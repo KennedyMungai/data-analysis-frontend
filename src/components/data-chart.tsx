@@ -17,7 +17,10 @@ import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts'
 
 type Props = {
 	label: string
-	data: { sector: string; value: number }[]
+	data:
+		| { region: string; value: number }[]
+		| { store: string; value: number }[]
+		| { storeSection: string; value: number }[]
 	sector: string
 }
 
