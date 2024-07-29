@@ -67,6 +67,15 @@ const OverallDataPage = () => {
 		}
 	})
 
+	const totalValue = regions.reduce((acc, region) => {
+		return (
+			acc +
+			region.incidents.reduce((acc, incident) => {
+				acc + incident.product_price * incident.product_quantity
+			}, 0)
+		)
+	}, 0)
+
 	return (
 		<div className='h-full p-2'>
 			<TopBar title={'Overall Data'} />
@@ -89,7 +98,7 @@ const OverallDataPage = () => {
 					<div />
 				</div>
 				<div className='gap-x-2 flex justify-between'>
-					<SummaryCard label='Total Amount' amount={0} />
+					<SummaryCard label='Total Amount' amount={totalValue} />
 					<SummaryCard label='Total Number of Incidents' amount={0} />
 					<SummaryCard label='Total ' amount={0} />
 				</div>
