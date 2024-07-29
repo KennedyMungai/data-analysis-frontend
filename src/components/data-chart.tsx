@@ -13,7 +13,7 @@ import {
 	ChartTooltip,
 	ChartTooltipContent
 } from '@/components/ui/chart'
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts'
 
 type Props = {
 	label: string
@@ -38,7 +38,7 @@ const DataChart = ({ label, data, sector }: Props) => {
 			</CardHeader>
 			<CardContent>
 				<ChartContainer config={chartConfig} className='min-h-[60vh]'>
-					<LineChart
+					<AreaChart
 						accessibilityLayer
 						data={data}
 						margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
@@ -50,14 +50,14 @@ const DataChart = ({ label, data, sector }: Props) => {
 							cursor={false}
 							content={<ChartTooltipContent indicator='line' />}
 						/>
-						<Line
+						<Area
 							dataKey='value'
 							type='natural'
 							fill='blue'
 							fillOpacity={0.2}
 							stroke='blue'
 						/>
-					</LineChart>
+					</AreaChart>
 				</ChartContainer>
 			</CardContent>
 			<CardFooter>
