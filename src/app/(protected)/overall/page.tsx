@@ -62,8 +62,8 @@ const OverallDataPage = () => {
 		return {
 			sector: region.region_name,
 			value: region.incidents.reduce((acc, incident) => {
-				acc + incident.product_price * incident.product_quantity
-			}, 0) as number
+				return acc + incident.product_price * incident.product_quantity
+			}, 0)
 		}
 	})
 
@@ -71,10 +71,16 @@ const OverallDataPage = () => {
 		return (
 			acc +
 			region.incidents.reduce((acc, incident) => {
-				acc + incident.product_price * incident.product_quantity
+				return acc + incident.product_price * incident.product_quantity
 			}, 0)
 		)
 	}, 0)
+
+	const totalNumber = regions.reduce((acc, region) => {
+		return acc + region.incidents.length
+	}, 0)
+
+	console.log('chartData', chartData)
 
 	return (
 		<div className='h-full p-2'>
@@ -99,8 +105,14 @@ const OverallDataPage = () => {
 				</div>
 				<div className='gap-x-2 flex justify-between'>
 					<SummaryCard label='Total Amount' amount={totalValue} />
-					<SummaryCard label='Total Number of Incidents' amount={0} />
-					<SummaryCard label='Total ' amount={0} />
+					<SummaryCard
+						label='Total Number of Incidents'
+						amount={totalNumber}
+					/>
+					<SummaryCard
+						label='Average '
+						amount={Math.floor(totalValue / totalNumber)}
+					/>
 				</div>
 				<DataChart label={'All'} data={chartData} sector={'region'} />
 			</div>
