@@ -7,5 +7,5 @@ export const useFetchSingleStoreSection = (storeSectionId: string) =>
 		queryFn: async () =>
 			axios
 				.get(`http://localhost:8000/store_sections/${storeSectionId}`)
-				.then((res) => res.data as IStoreSection)
+				.then((res) => res.data as IStoresection)
 	})
