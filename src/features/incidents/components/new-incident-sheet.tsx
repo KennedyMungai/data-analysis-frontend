@@ -212,7 +212,7 @@ const NewIncidentSheet = ({
 										)
 									}}
 								/>
-								<FormField
+								{/* <FormField
 									control={form.control}
 									name='region_id'
 									render={({ field }) => {
@@ -345,7 +345,7 @@ const NewIncidentSheet = ({
 											</FormItem>
 										)
 									}}
-								/>
+								/> */}
 								<Button type='submit' disabled={isPending}>
 									Save Changes
 								</Button>
