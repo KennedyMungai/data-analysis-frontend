@@ -16,6 +16,7 @@ import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
 import { columns } from './columns'
 import DataTable from './data-table'
+import { Skeleton } from '@/components/ui/skeleton'
 
 type Props = {
 	params: {
@@ -60,9 +61,25 @@ const StoreSectionDetails = ({ params: { storeSectionId } }: Props) => {
 
 	if (isStoreSectionPending || isStorePending || isIncidentsPending) {
 		return (
-			<div className='h-full'>
-				<TopBar title={''} />
-				Loading...
+			<div className='h-full p-2'>
+				<TopBar title={'Overall Data'} />
+				<div className='h-full p-4'>
+					<div className='flex justify-around pb-2'>
+						<div>
+							<Skeleton className='w-24 h-8' />
+						</div>
+						<div>
+							<Skeleton className='w-24 h-8' />
+						</div>
+						<div />
+					</div>
+					<div className='gap-x-2 flex justify-between'>
+						<Skeleton className='w-[25rem] h-[10rem]' />
+						<Skeleton className='w-[25rem] h-[10rem]' />
+						<Skeleton className='w-[25rem] h-[10rem]' />
+					</div>
+					<Skeleton className='w-full h-[60vh] mt-4' />
+				</div>
 			</div>
 		)
 	}

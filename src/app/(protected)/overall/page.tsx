@@ -41,7 +41,7 @@ const OverallDataPage = () => {
 						<Skeleton className='w-[25rem] h-[10rem]' />
 						<Skeleton className='w-[25rem] h-[10rem]' />
 					</div>
-					{/* TODO: Add the charts and tables for analysis */}
+					<Skeleton className='w-full h-[60vh] mt-4' />
 				</div>
 			</div>
 		)

@@ -5,6 +5,7 @@ import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import { useFetchRegion } from '@/features/regions/api/use-fetch-region'
 import { useFetchRegionStores } from '@/features/stores/api/use-fetch-region-stores'
 import { subDays } from 'date-fns'
@@ -39,9 +40,25 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 
 	if (isRegionPending || isStoresPending) {
 		return (
-			<div className='h-full'>
-				<TopBar title={''} />
-				Loading...
+			<div className='h-full p-2'>
+				<TopBar title={'Overall Data'} />
+				<div className='h-full p-4'>
+					<div className='flex justify-around pb-2'>
+						<div>
+							<Skeleton className='w-24 h-8' />
+						</div>
+						<div>
+							<Skeleton className='w-24 h-8' />
+						</div>
+						<div />
+					</div>
+					<div className='gap-x-2 flex justify-between'>
+						<Skeleton className='w-[25rem] h-[10rem]' />
+						<Skeleton className='w-[25rem] h-[10rem]' />
+						<Skeleton className='w-[25rem] h-[10rem]' />
+					</div>
+					<Skeleton className='w-full h-[60vh] mt-4' />
+				</div>
 			</div>
 		)
 	}
@@ -65,6 +82,10 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 			}, 0)
 		}
 	})
+
+	const totalAmount = region.incidents.reduce((acc, incident) => {
+		return acc + incident.product_price * incident.product_quantity
+	}, 0) as number
 
 	return (
 		<div className='h-full p-2'>
@@ -90,11 +111,23 @@ const IndividualRegionPage = ({ params: { regionId } }: Props) => {
 					<div />
 				</div>
 				<div className='gap-x-2 flex justify-between'>
-					<SummaryCard label='Total Amount' amount={0} />
-					<SummaryCard label='Total Number of Incidents' amount={0} />
-					<SummaryCard label='Total ' amount={0} />
+					<SummaryCard label='Total Amount' amount={totalAmount} />
+					<SummaryCard
+						label='Total Number of Incidents'
+						amount={region.incidents.length}
+					/>
+					<SummaryCard
+						label='Total '
+						amount={Math.floor(
+							totalAmount / region.incidents.length
+						)}
+					/>
 				</div>
-				<DataChart data={chartData} label={region.region_name} sector={'store'} />
+				<DataChart
+					data={chartData}
+					label={region.region_name}
+					sector={'store'}
+				/>
 			</div>
 		</div>
 	)

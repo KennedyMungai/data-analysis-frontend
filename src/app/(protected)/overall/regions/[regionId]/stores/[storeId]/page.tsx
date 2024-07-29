@@ -5,6 +5,7 @@ import DateFilter from '@/components/date-filter'
 import SummaryCard from '@/components/summary-card'
 import TopBar from '@/components/top-bar'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import { useFetchStoresStoreSections } from '@/features/store-sections/api/use-fetch-store-store-sections'
 import { useFetchSingleStore } from '@/features/stores/api/use-fetch-single-store'
 import { useFetchStoreIncidents } from '@/features/stores/api/use-fetch-store-incidents'
@@ -51,7 +52,28 @@ const IndividualStorePage = ({ params: { storeId } }: Props) => {
 	} = useFetchSingleStore(storeId)
 
 	if (isStoreIncidentsPending || isStoreSectionsPending || isStorePending) {
-		return <div>Loading...</div>
+		return (
+			<div className='h-full p-2'>
+				<TopBar title={'Overall Data'} />
+				<div className='h-full p-4'>
+					<div className='flex justify-around pb-2'>
+						<div>
+							<Skeleton className='w-24 h-8' />
+						</div>
+						<div>
+							<Skeleton className='w-24 h-8' />
+						</div>
+						<div />
+					</div>
+					<div className='gap-x-2 flex justify-between'>
+						<Skeleton className='w-[25rem] h-[10rem]' />
+						<Skeleton className='w-[25rem] h-[10rem]' />
+						<Skeleton className='w-[25rem] h-[10rem]' />
+					</div>
+					<Skeleton className='w-full h-[60vh] mt-4' />
+				</div>
+			</div>
+		)
 	}
 
 	if (isStoreIncidentsError || isStoreSectionsError || isStoreError) {
